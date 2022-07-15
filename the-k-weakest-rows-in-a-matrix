@@ -1,4 +1,4 @@
-//https://leetcode.com/problems/kth-missing-positive-number/
+//https://leetcode.com/problems/the-k-weakest-rows-in-a-matrix/
 class Solution {
     public int[] kWeakestRows(int[][] mat, int k) {
         int[] result=new int[k];
