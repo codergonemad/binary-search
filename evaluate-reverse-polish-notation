@@ -1,0 +1,52 @@
+//https://leetcode.com/problems/evaluate-reverse-polish-notation/
+class Solution {
+    public int evalRPN(String[] tokens) {
+        Stack<String> stack=new Stack<>();
+        int i=0;
+        //System.out.println(tokens.length);
+        while(i<tokens.length)
+        {
+            if(tokens[i].equals("*") || tokens[i].equals("/")||tokens[i].equals("-")||tokens[i].equals("+"))
+            {
+                int num1=Integer.parseInt(stack.pop());
+                int num2=Integer.parseInt(stack.pop());
+                int oper=tokens[i].charAt(0);
+                //System.out.println(num1+" "+num2+" "+oper);
+                if(oper==42)
+                {
+                    num1=num1*num2;
+                    stack.push(""+num1);
+                    i++;
+                }
+                else
+                    if(oper==43)
+                    {
+                        num1=num1+num2;
+                        stack.push(""+num1);
+                        i++;
+                    }
+                else
+                    if(oper==45)
+                    {
+                        num1=num2-num1;
+                        stack.push(""+num1);
+                        i++;
+                    }
+                else
+                    if(oper==47)
+                    {
+                        num1=num2/num1;
+                        stack.push(""+num1);
+                        i++;
+                    }
+            }
+            else
+            {
+                stack.push(tokens[i]);
+                i++;
+            }
+        }
+        int ans=Integer.parseInt(stack.pop());
+        return ans;
+    }
+}
